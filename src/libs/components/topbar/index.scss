@@ -1,0 +1,80 @@
+@import '../../styles/mixins';
+@import '../../styles/variable';
+
+.atom-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  width: 100%;
+  min-height: 128px;
+
+  &--back {
+    position: absolute;
+    top: 52px;
+    left: 20px;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background-color: rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 100%;
+      content: '';
+      transform: scale(0.5);
+      transform-origin: 0 0;
+    }
+  }
+
+  &--icon {
+    @include position-center;
+    margin-left: -2px;
+  }
+
+  &--title {
+    width: 100%;
+    text-align: center;
+  }
+
+  &--title-text {
+    @include padding-v(14px);
+    color: $atom-top-bar-fontcolor;
+    font-size: $atom-top-bar-fontsize;
+    font-weight: bold;
+    text-align: center;
+    line-height: 64px;
+  }
+
+  &--title--left {
+    padding-left: 40px;
+    text-align: left;
+  }
+
+  &--show-back &--title--left {
+    padding-left: 90px;
+  }
+
+  &--theme-def {
+    background-color: $atom-top-bar-bgcolor;
+  }
+
+  &--theme-def &--back {
+    &::before {
+      background-color: rgba(255, 255, 255, 0);
+      border-color: rgba(207, 207, 207, 0);
+    }
+  }
+
+  &--toggle &--back {
+    &::before {
+      background-color: rgba(255, 255, 255, 0.7);
+      border-color: rgba(207, 207, 207, 0.5);
+    }
+  }
+}

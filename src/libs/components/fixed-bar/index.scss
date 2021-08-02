@@ -1,0 +1,18 @@
+@import '../../styles/mixins';
+@import '../../styles/variable';
+
+.atom-fixedbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: $atom-fixedbar-zindex;
+  min-height: $atom-fixedbar-minheight;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  background-color: $atom-fixedbar-bgcolor;
+
+  &--border &--inner {
+    position: relative;
+    @include border-top($atom-fixedbar-bdcolor);
+  }
+}

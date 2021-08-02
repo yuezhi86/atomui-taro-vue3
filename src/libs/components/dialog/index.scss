@@ -1,0 +1,110 @@
+@import '../../styles/mixins';
+@import '../../styles/variable';
+
+.y-dialog {
+  position: fixed;
+  overflow: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  z-index: 1200;
+  display: flex;
+  outline: 0;
+  align-items: center;
+  justify-content: center;
+  transform: translateZ(1px);
+  opacity: 0;
+  visibility: hidden;
+
+  &--show {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+    transition: all 0.2s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+
+    &--show {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &-btn {
+    display: block;
+    width: auto !important;
+    font-size: 32px;
+
+    &--default,
+    &--primary {
+      &-text {
+        background: transparent !important;
+        border-color: transparent !important;
+      }
+    }
+
+    &--default-text {
+      color: $atom-color-def;
+    }
+
+    &--primary-text {
+      color: $atom-color-primary;
+    }
+  }
+
+  &-main {
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+    width: 560px;
+    background-color: #fff;
+    border-radius: 10px;
+
+    &-main--bottom {
+      top: 20%;
+    }
+  }
+
+  &-body {
+    overflow: auto;
+    height: 100%;
+    max-height: 300px;
+    padding: 60px 50px;
+    color: #333;
+    font-size: 28px;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  &-actions {
+    position: relative;
+    display: flex;
+    width: 100%;
+    @include border-top(#979797);
+  }
+
+  &-action {
+    position: relative;
+    flex: 1;
+  }
+
+  &-cancel {
+    @include border-right(#979797);
+  }
+
+  &-cancel &-btn {
+    color: #999;
+    font-weight: normal;
+  }
+}

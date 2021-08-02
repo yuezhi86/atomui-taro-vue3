@@ -1,0 +1,10 @@
+@import '../../styles/variable';
+
+.atom-page-container {
+  position: relative;
+  display: flex;
+  min-height: 100%;
+  box-sizing: border-box;
+  flex-direction: column;
+  background-color: $atom-page-container-bgcolor;
+}

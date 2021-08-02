@@ -1,0 +1,33 @@
+@import '../../styles/mixins';
+@import '../../styles/variable';
+
+.atom-table {
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+
+  &--inner {
+    display: grid;
+    min-width: 100%;
+  }
+
+  &--th {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    height: $atom-table-th-height;
+    padding: $atom-table-th-padding;
+    background-color: $atom-table-th-bgcolor;
+    color: $atom-table-th-fontcolor;
+    font-size: $atom-table-th-fontsize;
+    font-weight: bold;
+  }
+
+  &--td {
+    position: relative;
+    @include border-bottom($atom-table-td-bordercolor);
+    padding: $atom-table-td-padding;
+    color: $atom-table-td-fontcolor;
+    font-size: $atom-table-td-fontsize;
+  }
+}

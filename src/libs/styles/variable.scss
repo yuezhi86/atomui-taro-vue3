@@ -1,0 +1,104 @@
+$atom-color-def: #1a1a1a !default;
+$atom-color-primary: #077abb !default;
+$atom-border-color: #e6e8eb !default;
+
+// pageContainer
+$atom-page-container-bgcolor: #fff !default;
+
+// icon
+$atom-icon-size: 28px !default;
+
+// image
+$atom-image-loading-bgcolor: #f5f5f5 !default;
+$atom-image-error-bgcolor: $atom-image-loading-bgcolor !default;
+
+// loading
+$atom-loading-size: 80px !default;
+$atom-loading-color: $atom-color-primary !default;
+
+// loadingView
+$atom-loading-view-fontcolor: #666 !default;
+$atom-loading-view-fontsize: 26px !default;
+$atom-loading-view-lineheight: 32px !default;
+
+// table
+$atom-table-th-height: 80px !default;
+$atom-table-th-padding: 0 30px !default;
+$atom-table-th-bgcolor: #e6f1f8 !default;
+$atom-table-th-fontcolor: $atom-color-primary !default;
+$atom-table-th-fontsize: 28px !default;
+$atom-table-td-padding: 20px 30px !default;
+$atom-table-td-bordercolor: $atom-border-color !default;
+$atom-table-td-fontcolor: $atom-color-def !default;
+$atom-table-td-fontsize: 24px !default;
+
+// empty
+$atom-empty-height: 400px !default;
+$atom-empty-icon-color: #aaa !default;
+$atom-empty-icon-size: 80px !default;
+$atom-empty-img-width: 160px !default;
+$atom-empty-img-height: 160px !default;
+$atom-empty-text-color: #999 !default;
+$atom-empty-text-size: 24px !default;
+
+// fixedbar
+$atom-fixedbar-zindex: 900 !default;
+$atom-fixedbar-minheight: 98px !default;
+$atom-fixedbar-bgcolor: #fff !default;
+$atom-fixedbar-bdcolor: #e6e6e6 !default;
+
+// topbar
+$atom-top-bar-bgcolor: $atom-color-primary !default;
+$atom-top-bar-fontcolor: #fff !default;
+$atom-top-bar-fontsize: 36px !default;
+
+// formItem
+$atom-form-item-bgcolor: #fff !default;
+$atom-form-item-padding: 20px 30px !default;
+$atom-form-item-lineheight: 70px !default;
+$atom-form-item-bdcolor: $atom-border-color !default;
+$atom-form-item-label-maxwidth: 35% !default;
+$atom-form-item-label-fontcolor: #424242 !default;
+$atom-form-item-label-fontsize: 28px !default;
+$atom-form-item-content-fontcolor: $atom-color-def !default;
+$atom-form-item-content-fontsize: 28px !default;
+$atom-form-item-content-paddingleft: 30px !default;
+$atom-form-item-content-paddingtop: 20px !default;
+$atom-form-item-required-color: #f00 !default;
+
+// selectLabel
+$atom-select-label-color: $atom-color-def !default;
+$atom-select-label-placeholder-color: #999 !default;
+$atom-select-label-icon-color: #a6a6a6 !default;
+$atom-select-label-icon-size: 24px !default;
+
+// datepicker
+$atom-datepicker-color: $atom-color-def !default;
+$atom-datepicker-placeholder-color: #999 !default;
+$atom-datepicker-icon-color: #a6a6a6 !default;
+$atom-datepicker-icon-size: 24px !default;
+
+// list
+$atom-list-min-height: 500px !default;
+$atom-list-status-padding: 30px 0 !default;
+$atom-list-status-fontcolor: #999 !default;
+$atom-list-status-fontsize: 24px !default;
+$atom-list-status-lineheight: 40px !default;
+$atom-list-nodata-padding: 200px 0 !default;
+$atom-list-nodata-icon-size: 120px !default;
+$atom-list-nodata-icon-color: #aaa !default;
+$atom-list-nodata-fontcolor: #999 !default;
+$atom-list-nodata-fontsize: 24px !default;
+
+// listView
+$atom-list-view-fontcolor: #888 !default;
+$atom-list-view-fontsize: 24px !default;
+
+// checkbox and radio
+$atom-checkbox-icon-size: 30px !default;
+$atom-checkbox-icon-def-color: $atom-border-color !default;
+$atom-checkbox-icon-checked-color: $atom-color-primary !default;
+$atom-checkbox-icon-disabled-color: #d7d9db !default;
+$atom-checkbox-label-fontcolor: $atom-color-def !default;
+$atom-checkbox-label-fontsize: 28px !default;
+$atom-checkbox-label-disabled-fontcolor: #999 !default;

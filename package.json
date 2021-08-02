@@ -1,0 +1,99 @@
+{
+  "name": "atomui-taro-vue3",
+  "version": "1.0.0",
+  "private": true,
+  "description": "基于Taro和Vue3开发的小程序业务组件UI库",
+  "templateInfo": {
+    "name": "default",
+    "typescript": false,
+    "css": "sass"
+  },
+  "scripts": {
+    "build:weapp": "taro build --type weapp",
+    "build:swan": "taro build --type swan",
+    "build:alipay": "taro build --type alipay",
+    "build:tt": "taro build --type tt",
+    "build:h5": "taro build --type h5",
+    "build:rn": "taro build --type rn",
+    "build:qq": "taro build --type qq",
+    "build:jd": "taro build --type jd",
+    "build:quickapp": "taro build --type quickapp",
+    "dev:weapp": "npm run build:weapp -- --watch",
+    "dev:swan": "npm run build:swan -- --watch",
+    "dev:alipay": "npm run build:alipay -- --watch",
+    "dev:tt": "npm run build:tt -- --watch",
+    "dev:h5": "npm run build:h5 -- --watch",
+    "dev:rn": "npm run build:rn -- --watch",
+    "dev:qq": "npm run build:qq -- --watch",
+    "dev:jd": "npm run build:jd -- --watch",
+    "dev:quickapp": "npm run build:quickapp -- --watch",
+    "lintfix": "eslint --fix --ext .js,.vue --ignore-path .eslintignore ."
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/*.{js,vue}": [
+      "lintfix",
+      "git add"
+    ]
+  },
+  "browserslist": [
+    "last 3 versions",
+    "Android >= 4.1",
+    "ios >= 8"
+  ],
+  "author": "",
+  "dependencies": {
+    "@babel/runtime": "^7.7.7",
+    "@tarojs/components": "3.3.0",
+    "@tarojs/runtime": "3.3.0",
+    "@tarojs/taro": "3.3.0",
+    "dequal": "^2.0.2",
+    "lodash": "^4.17.21",
+    "taro-ui-vue3": "^1.0.0-alpha.21",
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.0",
+    "@tarojs/mini-runner": "3.3.0",
+    "@tarojs/webpack-runner": "3.3.0",
+    "@types/webpack-env": "^1.13.6",
+    "@vue/compiler-sfc": "^3.0.0",
+    "babel-preset-taro": "3.3.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-taro": "3.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-vue": "^7.0.0",
+    "husky": "^7.0.1",
+    "lint-staged": "^11.1.1",
+    "prettier": "^2.3.2",
+    "stylelint": "9.3.0",
+    "vue-eslint-parser": "^7.9.0",
+    "vue-loader": "^16.0.0-beta.8"
+  },
+  "eslintConfig": {
+    "root": true,
+    "parser": "vue-eslint-parser",
+    "extends": [
+      "taro/vue3",
+      "plugin:vue/vue3-recommended",
+      "prettier"
+    ],
+    "plugins": [
+      "vue",
+      "prettier"
+    ],
+    "rules": {
+      "vue/eqeqeq": "error",
+      "prettier/prettier": "error"
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "bracketSpacing": false
+  }
+}

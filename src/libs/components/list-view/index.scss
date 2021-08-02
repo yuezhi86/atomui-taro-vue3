@@ -1,0 +1,19 @@
+@import '../../styles/variable';
+
+.list-view {
+  &--loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+  }
+
+  &--loading {
+    &-text {
+      margin-top: 5px;
+      color: $atom-list-view-fontcolor;
+      font-size: $atom-list-view-fontsize;
+    }
+  }
+}

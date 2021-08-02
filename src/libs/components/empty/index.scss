@@ -1,0 +1,32 @@
+@import '../../styles/variable';
+
+.atom-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: $atom-empty-height;
+
+  &--img,
+  &--icon {
+    margin-bottom: 20px;
+    vertical-align: bottom;
+  }
+
+  &--img {
+    width: $atom-empty-img-width;
+    height: $atom-empty-img-height;
+  }
+
+  &--icon {
+    color: $atom-empty-icon-color;
+    font-size: $atom-empty-icon-size;
+  }
+
+  &--text {
+    width: 100%;
+    color: $atom-empty-text-color;
+    font-size: $atom-empty-text-size;
+    text-align: center;
+  }
+}

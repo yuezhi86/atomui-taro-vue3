@@ -1,0 +1,28 @@
+@import '../../styles/mixins';
+@import '../../styles/variable';
+
+.atom-datepicker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0;
+  color: $atom-datepicker-color;
+
+  &--placeholder {
+    color: $atom-datepicker-placeholder-color;
+  }
+
+  &--value {
+    @include text-overflow();
+    flex: auto;
+  }
+
+  &--icon {
+    flex-shrink: 0;
+    position: relative;
+    top: -2px;
+    margin-left: 14rpx;
+    color: $atom-datepicker-icon-color;
+    font-size: $atom-datepicker-icon-size;
+  }
+}

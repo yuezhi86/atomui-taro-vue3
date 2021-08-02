@@ -1,0 +1,27 @@
+@import '../../styles/variable';
+
+.atom-loading-view {
+  position: relative;
+
+  &--page {
+    display: flex;
+    min-height: 100%;
+    box-sizing: border-box;
+    flex-direction: column;
+  }
+
+  &--loading {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  &--text {
+    display: block;
+    color: $atom-loading-view-fontcolor;
+    font-size: $atom-loading-view-fontsize;
+    line-height: $atom-loading-view-lineheight;
+  }
+}

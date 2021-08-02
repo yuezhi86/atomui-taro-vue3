@@ -1,0 +1,60 @@
+@import '../../styles/mixins';
+@import '../../styles/variable';
+
+.atom-checkbox {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  color: $atom-checkbox-label-fontcolor;
+  font-size: $atom-checkbox-label-fontsize;
+
+  &--icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: $atom-checkbox-icon-size;
+    height: $atom-checkbox-icon-size;
+    border: 1px solid $atom-checkbox-icon-def-color;
+
+    &::before {
+      display: block;
+      width: 70%;
+      height: 70%;
+      background-color: rgba(255, 255, 255, 0);
+      content: '';
+      transition: background-color 0.2s ease-in-out;
+    }
+  }
+
+  &--label {
+    margin-left: 20px;
+  }
+
+  &--radio &--icon,
+  &--radio &--icon::before {
+    border-radius: 50% !important;
+  }
+
+  &--checked {
+    border-color: $atom-checkbox-icon-checked-color;
+
+    &::before {
+      background-color: $atom-checkbox-icon-checked-color;
+    }
+  }
+
+  &--disabled &--icon {
+    border-color: $atom-checkbox-icon-disabled-color !important;
+  }
+
+  &--disabled &--checked {
+    &::before {
+      background-color: $atom-checkbox-icon-disabled-color !important;
+    }
+  }
+
+  &--disabled &--label {
+    color: $atom-checkbox-label-disabled-fontcolor !important;
+  }
+}

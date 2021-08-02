@@ -1,0 +1,51 @@
+@import '../../styles/mixins';
+@import '../../styles/variable';
+@import '../../styles/keyframes';
+
+.atom-list {
+  &--min {
+    min-height: $atom-list-min-height;
+  }
+
+  &--status {
+    padding: $atom-list-status-padding;
+    color: $atom-list-status-fontcolor;
+    font-size: $atom-list-status-fontsize;
+    line-height: $atom-list-status-lineheight;
+    text-align: center;
+  }
+
+  &--loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+
+    &-icon {
+      margin-right: 10px;
+      animation: atom-rotate linear 1s infinite;
+    }
+  }
+
+  &--nodata {
+    padding: $atom-list-nodata-padding;
+    color: $atom-list-nodata-fontcolor;
+    font-size: $atom-list-nodata-fontsize;
+    text-align: center;
+
+    &-img,
+    &-icon {
+      margin-bottom: 20px;
+    }
+
+    &-img {
+      width: $atom-list-nodata-icon-size;
+      height: $atom-list-nodata-icon-size;
+    }
+
+    &-icon {
+      color: $atom-list-nodata-icon-color;
+      font-size: $atom-list-nodata-icon-size;
+    }
+  }
+}

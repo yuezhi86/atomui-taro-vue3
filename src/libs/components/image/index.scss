@@ -1,0 +1,26 @@
+@import '../../styles/variable';
+
+.atom-image {
+  overflow: hidden;
+  height: 100%;
+
+  &--img {
+    display: block;
+  }
+
+  &--loading {
+    background-color: $atom-image-loading-bgcolor;
+  }
+
+  &--error {
+    position: relative;
+    background-color: $atom-image-error-bgcolor;
+  }
+
+  &--error &--img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

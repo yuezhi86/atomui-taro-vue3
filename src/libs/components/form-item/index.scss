@@ -1,0 +1,51 @@
+@import '../../styles/mixins';
+@import '../../styles/variable';
+
+.atom-form-item {
+  display: flex;
+  padding: $atom-form-item-padding;
+  background-color: $atom-form-item-bgcolor;
+  line-height: $atom-form-item-lineheight;
+
+  &--border {
+    position: relative;
+    @include border-bottom($atom-form-item-bdcolor);
+  }
+
+  &--wrap {
+    display: block;
+  }
+
+  &--label {
+    flex-shrink: 0;
+    max-width: $atom-form-item-label-maxwidth;
+    color: $atom-form-item-label-fontcolor;
+    font-size: $atom-form-item-label-fontsize;
+  }
+
+  &--required {
+    color: $atom-form-item-required-color;
+  }
+
+  &--title-aside {
+    float: right;
+  }
+
+  &--content {
+    @include text-overflow;
+    flex: auto;
+    padding-left: $atom-form-item-content-paddingleft;
+    color: $atom-form-item-content-fontcolor;
+    font-size: $atom-form-item-content-fontsize;
+  }
+
+  &--wrap &--label {
+    max-width: 100%;
+  }
+
+  &--wrap &--content {
+    padding-top: $atom-form-item-content-paddingtop;
+    padding-left: 0;
+    text-align: left;
+  }
+}

@@ -1,0 +1,13 @@
+@import '../../styles/mixins';
+@import '../../styles/variable';
+
+.atom-checkbox-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100%;
+
+  .atom-checkbox {
+    margin-right: 50px;
+  }
+}
