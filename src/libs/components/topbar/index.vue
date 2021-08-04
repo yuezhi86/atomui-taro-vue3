@@ -10,51 +10,55 @@
     }"
     :style="{
       paddingTop: `${top}px`,
-      minHeight: `${top + 44}px`,
       backgroundColor: bgColor,
     }"
   >
     <view
-      v-if="showBack"
-      class="atom-topbar--back"
+      class="atom-topbar--inner"
       :style="{
-        top: `${top + 6}px`,
+        height,
       }"
-      @tap="pageBack"
-      @click="pageBack"
     >
-      <AtomIcon
-        name="arrow-left"
-        :size="isDef ? '17px' : '15px'"
-        :color="arrowColor"
-        class="atom-topbar--icon"
-      />
-    </view>
-    <view class="atom-topbar--title">
       <view
-        v-if="title"
-        class="atom-topbar--title-text"
-        :class="{
-          'atom-topbar--title--left': titleAlign === 'left',
-        }"
-        :style="{
-          color: fontColor,
-        }"
+        v-if="showBack"
+        class="atom-topbar--back"
+        @tap="pageBack"
+        @click="pageBack"
       >
-        {{ title }}
+        <AtomIcon
+          name="arrow-left"
+          :size="isDef ? '17px' : '15px'"
+          :color="arrowColor"
+          class="atom-topbar--icon"
+        />
       </view>
-      <slot></slot>
+      <view class="atom-topbar--title">
+        <view
+          v-if="title"
+          class="atom-topbar--title-text"
+          :class="{
+            'atom-topbar--title--left': titleAlign === 'left',
+          }"
+          :style="{
+            color: fontColor,
+          }"
+        >
+          {{ title }}
+        </view>
+      </view>
+      <slot name="title"></slot>
     </view>
+    <slot></slot>
   </view>
 </template>
 
 <script>
-import {inject} from 'vue';
+import {ref, computed, watch, inject, defineComponent, onMounted} from 'vue';
 import Taro, {eventCenter, getCurrentInstance} from '@tarojs/taro';
 import AtomIcon from '../icon/index.vue';
 import './index.scss';
-export default {
-  name: 'YTopbar',
+export default defineComponent({
+  name: 'Topbar',
   components: {
     AtomIcon,
   },
@@ -102,6 +106,10 @@ export default {
         return ['auto', 'block', 'white'].includes(value);
       },
     },
+    height: {
+      type: String,
+      default: '88rpx',
+    },
     // theme 为 plain 时，可以控制系统控件样式
     toggle: {
       type: Boolean,
@@ -116,74 +124,29 @@ export default {
       default: 1,
     },
   },
-  emits: ['ready'],
-  setup(props) {
+  emits: ['ready', 'getHeight'],
+  setup(props, {emit}) {
+    const instance = getCurrentInstance();
+    const id = ref('');
+    const top = ref(20);
     const setPaddingTop = inject('setPaddingTop');
-    return {
-      setPaddingTop,
-    };
-  },
-  data() {
-    return {
-      id: '',
-      top: 20,
-    };
-  },
-  computed: {
-    arrowColor({toggle, isDef, backColor}) {
-      if (!isDef && toggle) return '#000';
-      if (backColor === 'block') return '#000';
-      if (backColor === 'white') return '#fff';
-      return isDef ? '#000' : '#fff';
-    },
-    isDef({theme}) {
-      return theme === 'def';
-    },
-  },
-  watch: {
-    toggle(val) {
-      this.toggleTheme(val);
-    },
-  },
-  created() {
-    this.$instance = getCurrentInstance();
-    this.id = this.idName
-      ? this.idName
-      : 'topbar_' + this.$instance.page.__wxWebviewId__;
+    const isDef = computed(() => props.theme === 'def');
+    const arrowColor = computed(() => {
+      if (!isDef.value && props.toggle) return '#000';
+      if (props.backColor === 'block') return '#000';
+      if (props.backColor === 'white') return '#fff';
+      return isDef.value ? '#000' : '#fff';
+    });
 
-    Taro.getSystemInfo().then(({safeArea, statusBarHeight}) => {
-      const top = safeArea.top ? safeArea.top : statusBarHeight;
-      this.top = top;
-      this.$emit('ready', {
-        top,
-        height: top + 44,
-      });
-    });
-    this.toggleTheme(this.toggle);
-  },
-  mounted() {
-    if (!this.id || !this.setPaddingTop) return;
-    const onReadyEventId = this.$instance.router.onReady;
-    eventCenter.once(onReadyEventId, () => {
-      Taro.createSelectorQuery()
-        .select(`#${this.id}`)
-        .boundingClientRect()
-        .exec((e) => {
-          if (e && e[0]) {
-            const {height} = e[0];
-            this.setPaddingTop(height);
-          }
-        });
-    });
-  },
-  methods: {
-    pageBack(): void {
-      Taro.navigateBack({
-        delta: this.delta,
-      });
-    },
-    toggleTheme(val) {
-      if (this.isDef) return;
+    watch(
+      () => props.toggle,
+      (newVal) => {
+        toggleTheme(newVal);
+      }
+    );
+
+    function toggleTheme(val) {
+      if (isDef.value) return;
       Taro.setNavigationBarColor({
         frontColor: val ? '#000000' : '#ffffff',
         backgroundColor: '#ffffff',
@@ -192,7 +155,52 @@ export default {
           timingFunc: 'easeIn',
         },
       });
-    },
+    }
+
+    id.value = props.idName
+      ? props.idName
+      : 'topbar_' + instance.page.__wxWebviewId__;
+
+    Taro.getSystemInfo().then(({safeArea, statusBarHeight}) => {
+      const _top = safeArea.top ? safeArea.top : statusBarHeight;
+      top.value = _top;
+      const data = {
+        top: _top,
+        height: props.height,
+      };
+      setPaddingTop && setPaddingTop(data);
+      emit('ready', data);
+    });
+    toggleTheme(props.toggle);
+
+    onMounted(() => {
+      if (!id.value || !setPaddingTop) return;
+      const onReadyEventId = instance.router.onReady;
+      eventCenter.once(onReadyEventId, () => {
+        Taro.createSelectorQuery()
+          .select(`#${id.value}`)
+          .boundingClientRect()
+          .exec((e) => {
+            if (e && e[0]) {
+              const {height} = e[0];
+              emit('getHeight', height);
+            }
+          });
+      });
+    });
+
+    return {
+      id,
+      top,
+      isDef,
+      arrowColor,
+      setPaddingTop,
+      pageBack() {
+        Taro.navigateBack({
+          delta: props.delta,
+        });
+      },
+    };
   },
-};
+});
 </script>

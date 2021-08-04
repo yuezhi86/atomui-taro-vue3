@@ -58,7 +58,7 @@
 <script>
 import './index.scss';
 export default {
-  name: 'YDialog',
+  name: 'Dialog',
   props: {
     modelValue: {
       type: Boolean,

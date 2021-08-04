@@ -4,7 +4,7 @@
     :class="{
       'atom-list--min': loading || error || nodata,
     }"
-    :show="isReady || error"
+    :show="error || isReady"
     :is-page="isPage"
   >
     <slot :list-data="list"></slot>
@@ -276,11 +276,6 @@ export default {
           const result =
             (isClient ? resData : resData[fieldConfig.result]) || [];
 
-          if (!isReady.value) {
-            isReady.value = true;
-            emit('ready', props.onShowRefresh);
-          }
-
           const empty = !result.length;
           isLastPage.value = pageSize.value
             ? result.length < pageSize.value
@@ -297,6 +292,11 @@ export default {
               : listAll;
           } else {
             list.value = [...list.value, ...result];
+          }
+
+          if (!isReady.value) {
+            isReady.value = true;
+            emit('ready', props.onShowRefresh);
           }
 
           Taro.hideLoading();

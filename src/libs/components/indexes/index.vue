@@ -5,7 +5,7 @@
 <script>
 import './index.scss';
 export default {
-  name: 'YIndexes',
+  name: 'Indexes',
   props: {
     propName: {
       type: Number,

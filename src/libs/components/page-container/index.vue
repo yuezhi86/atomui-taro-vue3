@@ -2,11 +2,19 @@
   <view
     class="atom-page-container"
     :style="{
-      paddingTop: paddingTop + 'px',
+      paddingTop: customTopbar ? paddingTop : '',
       backgroundColor: bgColor,
     }"
   >
-    <slot></slot>
+    <view
+      class="atom-page-container--inner"
+      :style="{
+        paddingTop: innerPaddingTop && innerPaddingTop + 'px',
+        paddingBottom: safeBottom && 'env(safe-area-inset-bottom, 0)',
+      }"
+    >
+      <slot></slot>
+    </view>
   </view>
 </template>
 
@@ -16,25 +24,31 @@ import './index.scss';
 export default {
   name: 'PageContainer',
   props: {
-    // px
-    offsetTop: {
-      type: Number,
-      default: 0,
+    customTopbar: {
+      type: Boolean,
+      default: true,
+    },
+    safeBottom: {
+      type: Boolean,
+      default: true,
     },
     bgColor: {
       type: String,
       default: '',
     },
   },
-  setup(props) {
-    const paddingTop = ref(props.offsetTop);
+  setup() {
+    const paddingTop = ref(0);
+    const innerPaddingTop = ref(0);
 
-    provide('setPaddingTop', (value) => {
-      paddingTop.value = value + props.offsetTop;
+    provide('setPaddingTop', ({top, height}) => {
+      paddingTop.value = height;
+      innerPaddingTop.value = top;
     });
 
     return {
       paddingTop,
+      innerPaddingTop,
     };
   },
 };

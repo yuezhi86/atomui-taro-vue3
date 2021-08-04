@@ -18,15 +18,16 @@
     >
       {{ label }}
       <text v-if="required" class="atom-form-item--required">*</text>
-      <view class="atom-form-item--title-aside"
-        ><slot name="title"></slot
-      ></view>
+      <view class="atom-form-item--title-aside">
+        <slot name="title"></slot>
+      </view>
     </view>
 
     <view
       class="atom-form-item--content"
       :style="{
         textAlign: (groupProps && groupProps.contentAlign) || contentAlign,
+        paddingLeft: label ? '' : '0px',
       }"
     >
       <slot></slot>
